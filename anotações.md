@@ -28,3 +28,36 @@ Nesse caso estamos passando os valores para o construtor, então estamos passand
 
 
 Caso algum erro em código aconteça, o arquivo JS não vai me retornar o erro em código, e sim em run time, ou seja, quando rodar o site, e isso pode ser modificado utilizando o TS.
+Para rodar o TS temos que fazer a instalação dele.
+```
+npm install typescript@version --save-dev  
+```
+No caso vamos mudar a parte de "version" e colocar a versão do ts que utilizaremos.
+
+
+O navegador não vai entender a linguagem ts, então temos que mover os arquivos que antes eram js (agora são ts) para a pasta app, pois tudo o que for em ts vai ser convertido em js. Tudo em ts vai ser compilado para js.
+
+
+Precisamos configurar o ts, vamos criar um arquivo chamado "tsconfig.json" e passar algumas informações para ele. 
+```
+"compilerOptions": {
+        "outDir" : "dist/js",
+        "target": "ES6"
+    }
+```
+Nesse caso estamos passando as opções de compilação. "outDir" vai mostrar onde você quer compilar, "target" vai definir qual versão do EcmaScript você vai utilizar para que converta o ts para js.
+Temos que indicar onde está os arquivos .ts
+```
+"include": ["app/**/*"]
+```
+E ainda precisamos dizer no arquivo package.json o compilador dentro do script.
+```
+"compile": "tsc"
+```
+Nesse caso ele vai procurar em "node_modules" o tsc para que a compilação aconteça.
+
+
+Para compilar, vamos utilizar um comando do node.
+```
+npm run compile
+```
