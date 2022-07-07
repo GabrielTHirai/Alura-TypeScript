@@ -42,10 +42,11 @@ Precisamos configurar o ts, vamos criar um arquivo chamado "tsconfig.json" e pas
 ```
 "compilerOptions": {
         "outDir" : "dist/js",
-        "target": "ES6"
+        "target": "ES6",
+        "noEmitOnError": true
     }
 ```
-Nesse caso estamos passando as opções de compilação. "outDir" vai mostrar onde você quer compilar, "target" vai definir qual versão do EcmaScript você vai utilizar para que converta o ts para js.
+Nesse caso estamos passando as opções de compilação. "outDir" vai mostrar onde você quer compilar, "target" vai definir qual versão do EcmaScript você vai utilizar para que converta o ts para js. O "noEmitOnError" vai fazer com que enquanto o arquivo ts estiver com erro, não crie um arquivo js.
 Temos que indicar onde está os arquivos .ts
 ```
 "include": ["app/**/*"]
@@ -60,4 +61,19 @@ Nesse caso ele vai procurar em "node_modules" o tsc para que a compilação acon
 Para compilar, vamos utilizar um comando do node.
 ```
 npm run compile
+```
+obs: caso abra o arquivo js e esteja meio diferente do que você escreveu, não se preocupe, quando compilamos o arquivo ts com o ecmascript, ele vai pegar o que tem de mais moderno em js, então pode ser que mude um pouco.
+Então para fazer uma manutenção em um site, sempre olhe o arquivo TS, pois é a base de tudo, o js pode ser criado com o ecmascript, e estar um pouco diferente do normal.
+
+
+Ficar escrevendo sempre o "npm run compile" é chato e desgastante, então temos um jeito de fazer isso usando o watch do node. Na pasta package.json, em scripts:
+```
+"watch": "tsc -w"
+```
+Depois disso abra o terminal e coloque o "npm run watch". Dessa forma, a cada mudança, vai ser compilado automaticamente.
+
+
+Porém queremos o retorno do nosso site e junto a isso queremos também que ele compile automaticamente, para isso vamos usar um atributo do arquivo package.json.
+```
+npm run start
 ```
