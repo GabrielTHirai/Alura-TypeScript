@@ -77,3 +77,11 @@ Porém queremos o retorno do nosso site e junto a isso queremos também que ele 
 ```
 npm run start
 ```
+
+
+o TypeScript aceita os atributos privados do JS, porém eles recomendam que você use os atributos do TypeScript. Primeiro vamos tirar o "#", após isso vamos usar o "_", se deixarmos assim, vai ser como regredir, ja que é possivel mudar a variavel _data, por exemplo. Então colocamos antes do _ o atributo "private".
+```
+    private _data;
+    private _quantidade;
+    private _valor;
+```
