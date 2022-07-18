@@ -165,3 +165,11 @@ Agora podemos mudar no construtor os parametros, passando somente o date, quanti
 ```
     const negociacao = new Negociacao(date, quantidade, valor);
 ```
+
+
+Para melhorar a legibilidade do código, nós vamos colocar o que para método retorna.
+```
+adiciona(): void{
+    ...
+}
+```
