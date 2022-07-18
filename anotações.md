@@ -173,3 +173,14 @@ adiciona(): void{
     ...
 }
 ```
+
+
+Agora queremos que após o usuário digitar no formulário, o que estiver dentro do formulário seja apagado, porém seja mantido no console, para isso vamos criar um método com o nome de "limparFormulario" recebendo void, e para cada input vamos passar uma string vazia, e também vamos colocar um focus no inputData, para que ele volte para a data depois que o formulario for apagado. E tambem precisamos chamar o limparFormulario no método "adiciona" logo após o console.log, porque queremos que apareça no console e depois seja limpado o formulario.
+```
+    limparFormulario(): void{
+        this.inputData.value = '';
+        this.inputQuantidade.value = '';
+        this.inputValor.value = '';
+        this.inputData.focus();
+    }
+```
