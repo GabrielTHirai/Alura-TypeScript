@@ -137,3 +137,31 @@ Diferente de linguagens como C++ e Java (que definem o tipo de uma variavel ante
     private _quantidade: number;
     private _valor: number;
 ```
+Temos também um tipo de variavel para definir que tal elemento é do html e é um input.
+```
+private inputData: HTMLInputElement
+```
+Porém ainda temos um erro para arrumar, o erro em questão é no value do inputData, o value por padrão vai retornar uma string, e o TS ja identifica e mostra que o inputData espera um tipo Date.
+
+
+Primeiro para arrumar o erro temos que criar uma const com new Date passando ano, mês e dia, só que como vamos ler o ano mes e dia por meio de um value, ele irá vir com um " - ", só que queremos em virgulas. Para arrumar isso temos que fazer uma expressão regular procurando todos os " - ", e queremos que a expressão regular encontre todos os hifens.
+```
+    const exp = /-/g;
+```
+Traduzindo: a expressão regular vai buscar todos os hifens.
+Agora Temos que passar para o new date o que queremos, então para isso vamos indicar o inputData.value, passando o replace e dentro do replace temos que passar a expressão regular e o que queremos que seja substituido pelo hifen.
+```
+    const date = new Date(this.inputData.value.replace(exp, ','));
+```
+Depois precisamos converter a quantidade para inteiro, para isso vamos utilizar o parseInt.
+```
+    const quantidade = parseInt(this.inputQuantidade.value);
+```
+Da mesma forma que a quantidade, vamos criar uma const para o valor, passando agora o parseFloat, para que converta para o float.
+```
+    const valor = parseFloat(this.inputValor.value)
+```
+Agora podemos mudar no construtor os parametros, passando somente o date, quantidade e valor.
+```
+    const negociacao = new Negociacao(date, quantidade, valor);
+```
