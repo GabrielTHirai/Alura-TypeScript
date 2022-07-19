@@ -184,3 +184,22 @@ Agora queremos que após o usuário digitar no formulário, o que estiver dentro
         this.inputData.focus();
     }
 ```
+
+
+Agora temos que arrumar a lista de negociações, dentro da lista, podemos somente adicionar itens e não podemos excluir, então temos que criar um rapper envolta de um array de negociações que eu possa pedir para ele adicionar para mim e listar o que ele tem. Para isso temos que ir na pasta "models", em ts e criar um negociacoes.ts. Primeiro precisamos criar uma classe, já passando o export, e depois criar um private negociacoes passando um array vazio. Porém agora temos um erro, ja que o tipo desse private é any, e ordenamos para o ts que ele desse erro em tipos any, agora temos que informar que o tipo dessa variavel é array, porém temos que passar um parametro, então abrimos <> e colocamos Negociacao.
+```
+private negociacoes: Array<Negociacao> = [];
+```
+Para entender melhor o **Array<Negociacao>** temos um exemplo simples.
+```
+const list = [];
+list.push('10');
+list.push(11);
+```
+Nesse caso o const list ta recebendo qualquer tipo de variavel. Só que se passarmos um parametro nele.
+```
+const list: Array<string> = [];
+list.push('10');
+list.push(11);
+```
+Agora o const só vai aceitar o que for uma string, ele vai dar até um erro no ...push(11).
