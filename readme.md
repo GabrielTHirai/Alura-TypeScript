@@ -224,3 +224,18 @@ Agora o const só vai aceitar o que for uma string, ele vai dar até um erro no 
 
 <br></br>
 
+Não podemos acessar a variavel por meio de um ponto como fazemos normalmente, ja que ele é privado, então temos que criar um método para ele.
+```
+adiciona(negociacao: Negociacao){
+        this.negociacoes.push(negociacao);
+    }
+```
+Agora precisamos listar o que será retornado em negociações, pois eventualmente teremos que retornar essa lista. Para isso criamos um método com nome lista e passando o tipo array com o parametro de negociacao.
+```
+lista(): Array<Negociacao>{
+        return this.negociacoes;
+    }
+```
+
+<br></br>
+
