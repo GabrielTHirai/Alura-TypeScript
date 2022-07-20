@@ -239,3 +239,19 @@ lista(): Array<Negociacao>{
 
 <br></br>
 
+Agora nos deparamos com um erro, a lista de negociacões não pode ser alterada, ela tem que continuar como o usuário informar. Só que na lista que estamos agora ela é facilmente alterável, pode-se enxergar isso quando colocamos um pop (vai remover o ultimo elemento). 
+```
+this.negociacoes.lista().pop();
+```
+Vai ser exibido nada no console.
+Agora para mudar isso usamos uma propriedade do js que colocar um array dentro de outro.
+```
+return [...this.negociacoes];
+```
+Só que o TS tem uma propridade para tornar isso mais fácil. 
+```
+    lista(): ReadonlyArray<Negociacao>{
+        return this.negociacoes;
+    }
+```
+Isso aqui vai fazer com que o Array se torne somente para leitura. Agora se olharmos o negociacao-controller.ts, ele ta dando erro no pop, porque o pop é para alterar um elemento dentro do array, mas agora como o array é só para leitura, não pode ser alterado.
