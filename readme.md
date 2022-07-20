@@ -208,7 +208,7 @@ Agora temos que arrumar a lista de negociações, dentro da lista, podemos somen
 ```
 private negociacoes: Array<Negociacao> = [];
 ```
-Para entender melhor o **Array<Negociacao>** temos um exemplo simples.
+Para entender melhor o Array < Negociacao >  temos um exemplo simples.
 ```
 const list = [];
 list.push('10');
@@ -255,3 +255,27 @@ Só que o TS tem uma propridade para tornar isso mais fácil.
     }
 ```
 Isso aqui vai fazer com que o Array se torne somente para leitura. Agora se olharmos o negociacao-controller.ts, ele ta dando erro no pop, porque o pop é para alterar um elemento dentro do array, mas agora como o array é só para leitura, não pode ser alterado.
+
+<br></br>
+
+Agora para simplificar um pouco o código e as linhas, vamos alterar algumas coisas. Uma delas é no arquivo "negociacao.ts", nela vemos uma repetição de private e depois uma repetição de atribuição dentro do constructor, e como resolvemos isso? É bem simples, em TS o constructor pode funcionar para atribuir a variavel como private e já dar o tipo dela.
+```
+    constructor(
+        private _data: Date, 
+        private _quantidade:number, 
+        private _valor:number
+    ){}
+```
+Agora se formos no negociacao.js, vai ter direitinho a variavel criada e o construtor também, da forma que deveria ser.
+
+<br></br>
+
+Se olharmos o negociacoes.ts vemos o Array e dentro do "diamante" existe a definição do parametro, porém isso pode ser simplificado. 
+```    
+private negociacoes: Negociacao[] = [];
+```
+Então fomos de Array < Negociacao > para Negociacao[] que é a mesma coisa.
+Para o ReadonlyArray é um pouco diferente, temos que colocar o readonly antes e depois o Negociacao[]
+```
+lista(): readonly Negociacao[]{}
+```
