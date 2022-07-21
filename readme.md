@@ -279,3 +279,20 @@ Para o ReadonlyArray é um pouco diferente, temos que colocar o readonly antes e
 ```
 lista(): readonly Negociacao[]{}
 ```
+
+<br></br>
+
+Agora queremos colocar as variaveis do negociacao.ts em public, porem se colocarmos só em public ele vai facilmente alterável, para que isso não ocorra temos que definir o readonly, e se definimos o readonly não precisamos definir os getters.
+```
+        public readonly data: Date, 
+        public readonly quantidade:number, 
+        public readonly valor:number
+```
+Porém temos um problema nisso, o TS pode deixar eu fazer algumas alterações nesse caso, como por exemplo se eu colocar um setDate dentro da data. O readonly não permite a atribuição, que seria o (new Date()). Usamos a programação defensiva, basicamente vamos criar uma váriavel data que vai receber o data (para isso precisamos mudar o data para private de novo, tiramos o readonly e criamos um getter).
+```
+    get data(): Date{
+        const data = new Date(this._data.getTime());
+        return data;
+    }
+```
+Agora esse getter é imutavel.
