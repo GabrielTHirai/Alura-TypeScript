@@ -400,3 +400,18 @@ Depois de criar um constructor para o template, temos que passar o template para
         this.limparFormulario();
     }
 ```
+
+### Data
+
+Agora precisamos resolver sobre a data que será exibida, o proprio navegador tem uma propriedade para informar isso.
+```
+Intl.DateTimeFormat()
+```
+E vamos passar isso no td, chamando em js.
+```
+    <td>${new Intl.DateTimeFormat()}</td>
+```
+Vamos passar também o formato dele, que vai ser o negociacao.data
+```
+    <td>${new Intl.DateTimeFormat().format(negociacao.data)}</td>
+```
