@@ -296,3 +296,61 @@ Porém temos um problema nisso, o TS pode deixar eu fazer algumas alterações n
     }
 ```
 Agora esse getter é imutavel.
+
+<br></br>
+
+<h1>2º Parte do Curso</h1>
+
+<br></br>
+
+Primeiramente precisamos entender uma coisa, o nosso programa atual está retornando as informações informadas pelo usuário no console, porém para que o usuário veja essas informações, ele terá que abrir o console, o que não faz muito sentido, então queremos exibir todas as informações na mesma tela de negociações. E como podemos fazer isso? Usaremos um template que vai buscar as informações, e assim, automaticamente, as informações vão aparecer para o usuário. 
+Para isso vamos usar um miniframework no react para criar isso (obs: não vamos programar tudo em react, isso é um curso de typescript).
+
+<br></br>
+
+Vamos criar um arquivo dentro do views que está dentro da pasta app, esse arquivo vai ter o nome de "negociacoes-view.ts" e lá dentro vamos criar uma classe que vai estar guardando um objeto com nome de template que vai receber uma string e dentro desse template vamos retornar uma tabela em html com o seu cabeçalho.
+```
+export class NegociacoesView {
+    template(): string{
+        return `
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>DATA</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR</th>
+                </tr>
+            </thead>
+        </table>
+        ` 
+    }
+}
+```
+Usamos uma template string, para que mais pra frente o template crie um html com os dados que queremos, sem ter que ficar escrevendo.
+
+
+<h1>View</h1>
+
+Criamos uma class na negociacoes view, porém precisamos que apareça na página e para isso precisamos fazer com que o ts identifique onde ele vai aparecer.
+
+Então vamos lá no index.html, vamos criar uma div com o id de "negociacoesView", e vamos criar um constructor no negociacoes-view, passando como parametro um seletor:string. Depois em negociacoes-controller vamos criar um objeto privado passando o id que criamos em html.
+
+```
+    private negociacoesView = new NegociacoesView('#negociacoesView');
+```
+Com isso ele vai chamar o id que criamos no html.
+
+Agora em negociacoes-view, temos que criar um private elemento dizendo que ele vai ser um elemento de html;
+```
+    private elemento: HTMLElement;
+```
+
+No constructor, indicamos que o elemento vai receber o seletor, então ele vai buscar no DOM o seletor que vai receber o elemento.
+
+Agora vamos criar um metodo chamado update, dentro dela vamos passar o elemento porém agora com o innerHTML, passando o template();
+```
+    update():void{
+        this.elemento.innerHTML = this.template();
+    }
+```
+O update vai servir para renderizar o metodo template no elemento que criamos anteriormente.
