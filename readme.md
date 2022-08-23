@@ -354,3 +354,49 @@ Agora vamos criar um metodo chamado update, dentro dela vamos passar o elemento 
     }
 ```
 O update vai servir para renderizar o metodo template no elemento que criamos anteriormente.
+
+### Dados passados para o html
+
+Agora temos que passar os dados que o usuário informar para o html, para isso vamos em negociacoesController e vamos passar no metodo update o this.negociacoes que lá vai estar todos os dados, ele não vai compilar porque em negociacoes-view o update não recebe nada.
+```
+    this.negociacoesView.update(this.negociacoes);
+```
+
+No metodo update vamos passar um model que recebe o proprio Negociacoes e o template vai receber esse model.
+```
+    update(model:Negociacoes):void{
+        this.elemento.innerHTML = this.template(model);
+    }
+```
+No metodo template vamos passar o model também, e também vai receber o negociacoes.
+```
+    template(model:Negociacoes): string{
+```
+
+Agora dentro de tbody, vamos colocar os dados que o usuário informar, para isso vamos usar um recurso do js para importar um elemento, que nesse caso vai ser o model que vai passar uma lista que ja criamos em Negociacoes, e vai passar um map recebendo negociacao, e dentro disso vai retornar uma string grande passando um tr e três td's. E dentro desses td's vamos passar os vamos de negociacao.
+
+```
+                ${model.lista().map(negociacao =>{
+                    return `
+                    <tr>
+                        <td></td>
+                        <td>${negociacao.quantidade}</td>
+                        <td>${negociacao.valor}</td>
+                    </tr>
+                    `
+                })}
+```
+Só que agora tudo isso vai retornar um array e não queremos isso, o array tem uma propriedade que é o join, no join vamos passar uma string vazia.
+```
+.join('')
+```
+
+Depois de criar um constructor para o template, temos que passar o template para o adiciona.
+```
+    adiciona(): void{
+        const negociacao = this.criaNegociacao();
+        this.negociacoes.adiciona(negociacao);
+        this.negociacoesView.update(this.negociacoes)
+        this.limparFormulario();
+    }
+```
