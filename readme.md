@@ -329,7 +329,7 @@ export class NegociacoesView {
 Usamos uma template string, para que mais pra frente o template crie um html com os dados que queremos, sem ter que ficar escrevendo.
 
 
-<h1>View</h1>
+## View
 
 Criamos uma class na negociacoes view, porém precisamos que apareça na página e para isso precisamos fazer com que o ts identifique onde ele vai aparecer.
 
@@ -355,7 +355,7 @@ Agora vamos criar um metodo chamado update, dentro dela vamos passar o elemento 
 ```
 O update vai servir para renderizar o metodo template no elemento que criamos anteriormente.
 
-### Dados passados para o html
+## Dados passados para o html
 
 Agora temos que passar os dados que o usuário informar para o html, para isso vamos em negociacoesController e vamos passar no metodo update o this.negociacoes que lá vai estar todos os dados, ele não vai compilar porque em negociacoes-view o update não recebe nada.
 ```
@@ -401,7 +401,7 @@ Depois de criar um constructor para o template, temos que passar o template para
     }
 ```
 
-### Data
+## Data
 
 Agora precisamos resolver sobre a data que será exibida, o proprio navegador tem uma propriedade para informar isso.
 ```
@@ -415,3 +415,5 @@ Vamos passar também o formato dele, que vai ser o negociacao.data
 ```
     <td>${new Intl.DateTimeFormat().format(negociacao.data)}</td>
 ```
+
+## mensagem view
