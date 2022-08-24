@@ -457,3 +457,31 @@ Para isso vamos passar tudo de update para dentro de view, só que também temos
 Caso a filha sobreescreva o comportamento do método, ele não vai dar a mensagem de erro.
 
 Analisando o negociacoes-view, temos um erro de compilação, ja que o model está recebendo uma string em view, porém em negociacoes-view, o model vai receber o Negociacoes, e temos que arrumar isso, porque o mesmo tipo de model que está em view tem que estar em negociacoes e em mensagem.
+
+## Generics
+
+Vimos o generics anteriormente, mas para ressaltar, ele cria um tipo vazio, que quando for chamado, tenha que ser informado o tipo que será colocado.
+
+Para que isso aconteça, temos que substituir todos os tipos que informamos no update e no template, pelo o que informamos dentro do "diamante" <>.
+
+```
+View<T>
+```
+É assim que criamos um generic.
+
+```
+    update(model:T):void{
+        const template = this.template(model);
+        this.elemento.innerHTML = template;
+    }
+
+    template(model:T):string{
+        throw Error('Classe filha precisa implementar o método template');
+    }
+```
+E assim que implementamos ela.
+
+Agora quando a class View for estendida, terá que ir junto com ela o tipo que será utilizado.
+```
+export class MensagemView extends View<string>
+```
