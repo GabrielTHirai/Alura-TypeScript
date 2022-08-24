@@ -3,7 +3,7 @@ import { View } from "./view.js";
 
 export class NegociacoesView extends View{
 
-    
+
 
     template(model:Negociacoes): string{
         return `
@@ -28,11 +28,5 @@ export class NegociacoesView extends View{
             </tbody>
         </table>
         `;
-    }
-
-    update(model:Negociacoes):void{
-        const template = this.template(model);
-        console.log(template);
-        this.elemento.innerHTML = template;
     }
 }

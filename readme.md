@@ -445,3 +445,15 @@ protected elemento: HTMLElement;
 Para entender isso, vamos pensar que o view.ts é o pai de mensagem-view e negociacao-view, e ele precisa mandar uma herança para seus filhos, porém os filhos não podem acessar (pegar) algo que é privado, porém se o pai proteger a herança, seus filhos vão poder acessar, porém quem está de fora não consegue acessar.
 
 Ai você se pergunta:"Mas não era mais fácil colocar só um public". A resposta é que não, se colocarmos como public, todo mundo vai poder acessar, então você vai poder acessar os dados de qualquer arquivo, e não é isso que queremos, queremos que somente os filhos acessem o "elemento".
+
+Temos mais coisas repetitivas (o update), então vamos fazer com que a mensagem-view e o negociacoes-view herdem o update.
+
+Para isso vamos passar tudo de update para dentro de view, só que também temos que passar o template, porque senão o update não roda, só que se deixarmos passando somente o template, vai dar um erro no negociacoes-view, porque ele não vai receber os mesmo parametros, então adicionamos um throw Error para que se o método template não for executado apareça um erro na tela.
+```
+    template(model:string):string{
+        throw Error('Classe filha precisa implementar o método template');
+    }
+```
+Caso a filha sobreescreva o comportamento do método, ele não vai dar a mensagem de erro.
+
+Analisando o negociacoes-view, temos um erro de compilação, ja que o model está recebendo uma string em view, porém em negociacoes-view, o model vai receber o Negociacoes, e temos que arrumar isso, porque o mesmo tipo de model que está em view tem que estar em negociacoes e em mensagem.
