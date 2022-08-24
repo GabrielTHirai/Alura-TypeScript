@@ -416,4 +416,32 @@ Vamos passar também o formato dele, que vai ser o negociacao.data
     <td>${new Intl.DateTimeFormat().format(negociacao.data)}</td>
 ```
 
-## mensagem view
+## Mensagem view
+
+Agora temos que pensar em criar uma mensagem de "adicionado com sucesso" após o usuário informar os dados, o processo é mais ou menos parecido com o negociacao-view, mudando apenas o return que o template vai dar. No "negociacao-controller" é a mesma coisa também, vamos criar um private passando um id (que tem que ser criado no html), e depois passando no método adiciona uma string avisando que foi concluída com sucesso.
+
+Porém agora temos um problema aqui, ja que tem muito código sendo repetido entre o mensagem-view e o negociacao-view. Agora temos que usar o conceito de herança para os código repetitivos.
+
+## Herança
+
+Temos que criar um novo arquivo, nesse caso vai ter um nome de "view" (obviamente que é dentro da pasta views), e vamos copiar o private e o constructor para esse arquivo.
+```
+export class View{
+    private elemento: HTMLElement;
+
+    constructor(seletor:string){
+        this.elemento = document.querySelector(seletor)
+    }
+}
+```
+Nesse caso só definimos, agora temos que mostrar para o mensagem-view e negociacao-view que ele tem que estender até o view.
+```
+export class MensagemView extends View
+```
+Agora temos um problema de compilação, a class não ta conseguindo acessar o "elemento". Se olharmos bem, o "elemento" está definido como private, e ele não consegue acessar se não for do mesmo arquivo, então precisamos mudar para "protected".
+```
+protected elemento: HTMLElement;
+```
+Para entender isso, vamos pensar que o view.ts é o pai de mensagem-view e negociacao-view, e ele precisa mandar uma herança para seus filhos, porém os filhos não podem acessar (pegar) algo que é privado, porém se o pai proteger a herança, seus filhos vão poder acessar, porém quem está de fora não consegue acessar.
+
+Ai você se pergunta:"Mas não era mais fácil colocar só um public". A resposta é que não, se colocarmos como public, todo mundo vai poder acessar, então você vai poder acessar os dados de qualquer arquivo, e não é isso que queremos, queremos que somente os filhos acessem o "elemento".
