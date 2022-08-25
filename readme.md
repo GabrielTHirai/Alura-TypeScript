@@ -540,3 +540,14 @@ Se analisarmos bem, o código em de data está bem grande e não ta definido com
     }
 ```
 
+## Atualiza view
+
+Em negociacao controller, no método adiciona, estamos colocando o view dentro dele, e isso pode ser resolvido para entendermos melhor o que está sendo feito. Então criamos um novo método e passamos tudo o que tem a ver com o view.
+```
+    private atualizaView():void{
+        this.negociacoesView.update(this.negociacoes);
+        this.mensagemView.update('Negociação adicionada com sucesso');
+    }
+```
+E chamamos o atualizaView em adiciona.
+
