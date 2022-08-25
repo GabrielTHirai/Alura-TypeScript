@@ -485,3 +485,23 @@ Agora quando a class View for estendida, terá que ir junto com ela o tipo que s
 ```
 export class MensagemView extends View<string>
 ```
+
+## Classes abstratas
+
+Uma classe abstrata não pode ser instanciada diretamente, você só pode instanciar caso o filho herda a classe e você faz uma instancia do filho.
+
+```
+export abstract class View<T>{
+
+}
+```
+
+### Método Abstrato
+
+Com a classe abstrata, não precisamos fazer o throw error em template para sobreescrever, apenas precisamos dizer ao template que ele é abstrato.
+
+```
+    abstract template(model:T):string;
+```
+
+Agora caso o template não esteja definido, ele vai dar erro em tempo de desenvolvimento, e não em run time. Com isso gerando menos erros.
