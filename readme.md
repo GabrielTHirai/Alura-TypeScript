@@ -529,3 +529,14 @@ export class MensagemView extends View<string>{
 
 }
 ```
+
+## Data de negociacoes-view
+
+Se analisarmos bem, o código em de data está bem grande e não ta definido com clareza o que ele vai fazer, para resolver isso vamos criar um método *privado* para colocar essa data.
+
+```
+    private formatar(data:Date){
+        return new Intl.DateTimeFormat().format(data);
+    }
+```
+
