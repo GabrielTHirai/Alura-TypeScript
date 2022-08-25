@@ -505,3 +505,27 @@ Com a classe abstrata, não precisamos fazer o throw error em template para sobr
 ```
 
 Agora caso o template não esteja definido, ele vai dar erro em tempo de desenvolvimento, e não em run time. Com isso gerando menos erros.
+
+## Template visivel
+
+Em negociacao controller precisamos ver somente o método update, porém se olharmos bem estamos vendo também o método template, e isso precisa ser limitado.
+
+Os métodos, por padrão, adotam o public, porém queremos que ele seja escondido no controller, então colocamos protected, como vimos anteriormente. O protected vai permitir que as classes filhas acessem o método da classe pai, porém se não forem do mesmo "parentesco" ele não vai aparecer.
+
+```
+    protected abstract template(model:T):string;
+```
+
+Porém mesmo assim o método template aparece em controller. Como os métodos por padrão ja vem como public, temos que informar em mensagem view e em negociacoes view que é protected, se não o método template se torna public novamente.
+
+```
+export class MensagemView extends View<string>{
+
+    protected template(model:string):string{
+        return`
+            <p class="alert alert-info"> ${model}</p>
+        `
+    }
+
+}
+```
