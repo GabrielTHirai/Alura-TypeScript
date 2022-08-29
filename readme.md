@@ -566,3 +566,30 @@ O getDay vai retornar um numero entre 0 e 6, 0 sendo domingo e 6 sendo sábado, 
         }
 ```
 Basicamente se o usuário informar um dia da semana que não seja nos finais de semana, ele vai rodar todo o adiciona, porém se o usuário informar um dia que não condiz com os dias da semana, ele vai retornar uma mensagem para o usuário informando que esse dia não é aceito.
+
+Porém não está legível, precisamos especificar os finais de semana, e criamos um método.
+
+```
+    private readonly DOMINGO = 0;
+    private readonly SABADO = 6;
+```
+Declarando os dias da semana, com o readonly para informar que será somente para leitura (como um const no JS).
+
+```
+    private diaUtil(data:Date){
+        return data.getDay() > this.DOMINGO && data.getDay() < this.SABADO;
+    }
+```
+Criando um método que vai retornar a uma verificação que fizemos anteriormente no if (vai retornar verdadeiro ou falso).
+
+``` 
+        if(!this.diaUtil(negociacao.data)){
+            this.mensagemView.update('Apenas negociações em dias úteis são aceitas');
+            return;
+        }
+        
+        this.negociacoes.adiciona(negociacao);
+        this.limparFormulario();
+        this.atualizaView();
+```
+Refazemos o if, nesse if em questão estamos pegando a negativa do this.diaUtil, ou seja, se o diaUtil for falsa ele vai entrar ali, caso seja verdadeira ele nem entra e ja faz todo o processo de adiciona. Dessa forma não precisamos de um else.
