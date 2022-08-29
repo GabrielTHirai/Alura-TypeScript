@@ -613,3 +613,16 @@ export enum DiasDaSemana{
 
 ```
 Em enumeration, toda a variavel que estiver em primeiro, vai ser definida como 0 e assim por diante.
+
+Ok mas e se alguem que não sabe de nada mudar a ordem do enum, e colocar, por exemplo, a quarta em primeiro e domingo em ultimo, vai mudar completamente, porque o enum adota por padrão a primeiro como 0, não importa se você muda as ordens, então para não ter problema com isso, coloque sempre o numero na frente.
+```
+export enum DiasDaSemana{
+    DOMINGO=0,
+    SEGUNDA=1,
+    TERCA=2,
+    QUARTA=3,
+    QUINTA=4,
+    SEXTA=5,
+    SABADO=6
+}
+```
