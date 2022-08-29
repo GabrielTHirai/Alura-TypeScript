@@ -551,3 +551,18 @@ Em negociacao controller, no método adiciona, estamos colocando o view dentro d
 ```
 E chamamos o atualizaView em adiciona.
 
+## Dias úteis
+
+Não faz sentido o nosso site de negociações aceitar dados em finais de semana, então temos que resolver isso, em js tem uma propriedade que é o getDay, que diferente do getDate, ele pega os dias da semana, enquanto no getDate ele pega os dias do mês.
+O getDay vai retornar um numero entre 0 e 6, 0 sendo domingo e 6 sendo sábado, então temos que fazer uma verificação utilizando isso.
+
+```
+        if(negociacao.data.getDay() > 0 && negociacao.data.getDay() > 6){
+            this.negociacoes.adiciona(negociacao);
+            this.limparFormulario();
+            this.atualizaView();
+        } else {
+            this.mensagemView.update('Apenas negociações em dias úteis são aceitas');
+        }
+```
+Basicamente se o usuário informar um dia da semana que não seja nos finais de semana, ele vai rodar todo o adiciona, porém se o usuário informar um dia que não condiz com os dias da semana, ele vai retornar uma mensagem para o usuário informando que esse dia não é aceito.
