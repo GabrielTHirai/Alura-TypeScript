@@ -593,3 +593,23 @@ Criando um método que vai retornar a uma verificação que fizemos anteriorment
         this.atualizaView();
 ```
 Refazemos o if, nesse if em questão estamos pegando a negativa do this.diaUtil, ou seja, se o diaUtil for falsa ele vai entrar ali, caso seja verdadeira ele nem entra e ja faz todo o processo de adiciona. Dessa forma não precisamos de um else.
+
+## Enumerations
+
+Fizemos o readonly para o sabado e dominmgo, mas isso não ta bem estruturado ainda.
+Em TS tem um jeito de você criar um readonly sem definir o numero e sem definir o readonly, que é o enumeration.
+
+Criamos uma pasta nova com nome de enums, e um arquivo novo, para iniciar temos que dar export para depois ser importada, e temos que definir os dias.
+```
+export enum DiasDaSemana{
+    DOMINGO,
+    SEGUNDA,
+    TERCA,
+    QUARTA,
+    QUINTA,
+    SEXTA,
+    SABADO
+}
+
+```
+Em enumeration, toda a variavel que estiver em primeiro, vai ser definida como 0 e assim por diante.
